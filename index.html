@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button id="productButton" onclick="productClicked()">View Product</button>
+</body>
+<script type="text/javascript" defer>
+    var clevertap = {
+        event: [],
+        profile: [],
+        account: [],
+        onUserLogin: [],
+        notifications: [],
+        privacy: [],
+    };
+    // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+    clevertap.account.push({ id: "R99-4R5-Z76Z" });
+    clevertap.privacy.push({ optOut: false }); //set the flag to true, if the user of the device opts out of sharing their data
+    clevertap.privacy.push({ useIP: false }); //set the flag to true, if the user agrees to share their IP data
+    function productClicked() {
+        console.log('called')
+        clevertap.event.push("product viewed", {
+            "Product ID": "1",
+            "Product Name": "CleverTap",
+            "Product Image": "https://d35fo82fjcw0y8.cloudfront.net/2018/07/26020307/customer-success-clevertap.jpg",
+        });
+        // each of the below mentioned fields are optional
+        // if set, these populate demographic information in the Dashboard
+        clevertap.profile.push({
+            "Site": {
+                "Email": "clevertap+trivedi.nirali30@gmail.com",               // Email address of the user
+            }
+        });
+
+    }
+    (function () {
+        var wzrk = document.createElement("script");
+        wzrk.type = "text/javascript";
+        wzrk.async = true;
+        wzrk.src =
+            ("https:" == document.location.protocol
+                ? "https://d2r1yp2w7bby2u.cloudfront.net"
+                : "http://static.clevertap.com") + "/js/clevertap.min.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(wzrk, s);
+    })();
+</script>
+
+</html>
